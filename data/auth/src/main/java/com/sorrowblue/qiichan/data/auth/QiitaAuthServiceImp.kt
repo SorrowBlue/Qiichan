@@ -6,7 +6,6 @@ import androidx.core.content.edit
 import androidx.core.net.toUri
 import com.sorrowblue.qiichan.data.AccessToken
 import com.sorrowblue.qiichan.data.AndroidClient
-import com.sorrowblue.qiichan.data.BuildConfig
 import com.sorrowblue.qiichan.data.QIITA_API_ROOT
 import com.sorrowblue.qiichan.domains.auth.QiitaAuthService
 import com.sorrowblue.qiichan.domains.auth.QiitaAuthUser
@@ -15,14 +14,10 @@ import io.ktor.client.request.parameter
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.serialization.UnstableDefault
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.bind
-import org.koin.dsl.module
 import kotlin.random.Random
 
 private const val QIITA_SCOPE = "read_qiita write_qiita"
 private const val QIITA_TEAM_SCOPE = "read_qiita_team write_qiita_team"
-private val charPool = ('a'..'z') + ('A'..'Z') + ('0'..'9')
 
 internal class QiitaAuthServiceImp(
 	private val client: AndroidClient,
@@ -82,17 +77,10 @@ internal class QiitaAuthServiceImp(
 		return "$QIITA_API_ROOT/oauth/authorize?client_id=${BuildConfig.QiitaClientId}&scope=$mScope&state=$state".toUri()
 	}
 
-	private fun generateState(): String =
-		1.rangeTo(40).map { Random.nextInt(0, charPool.size) }.map(charPool::get)
+	private fun generateState(): String {
+		val charPool = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+		return 1.rangeTo(40).map { Random.nextInt(0, charPool.size) }.map(charPool::get)
 			.joinToString("")
+	}
 }
 
-
-val dataAuthModule
-	get() = module {
-		single { SecureService(androidContext()) }
-		single { AccessTokenService(service = get()) }
-		single {
-			QiitaAuthServiceImp(AndroidClient(androidContext()), get(), get())
-		} bind QiitaAuthService::class
-	}

@@ -5,7 +5,6 @@ import com.sorrowblue.qiichan.data.AccessToken
 import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 
-
 internal class AccessTokenService(private val service: SecureService) {
 
 	companion object {
