@@ -1,18 +1,9 @@
 plugins { `kotlinx-serialization` }
-android {
-	buildTypes.onEach {
-		it.buildConfigField("String", "QiitaClientId", QiitaClientId)
-		it.buildConfigField("String", "QiitaClientSecret", QiitaClientSecret)
-	}
-	libraryVariants.all {
-		generateBuildConfigProvider.configure {
-			enabled = true
-		}
-	}
-}
+
 kotlinCompile {
 	kotlinOptions.freeCompilerArgs += KOTLIN_USE_OPT
 }
+
 dependencies {
 	api(Libs.`ktor-client-okhttp`)
 	implementation(Libs.`ktor-client-android`)

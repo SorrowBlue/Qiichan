@@ -1,9 +1,11 @@
 plugins {
 	`kotlinx-serialization`
 }
+
 kotlinCompile {
 	kotlinOptions.freeCompilerArgs += KOTLIN_USE_OPT
 }
+
 dependencies {
 	implementation(project(Modules.`domains-item`))
 	implementation(project(Modules.`data-user`))

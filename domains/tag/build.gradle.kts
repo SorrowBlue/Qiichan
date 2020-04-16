@@ -2,6 +2,7 @@ plugins {
 	`kotlinx-serialization`
 	`kotlin-android-extensions`
 }
+
 kotlinCompile {
 	kotlinOptions.freeCompilerArgs += KOTLIN_INLINE_CLASSES
 }

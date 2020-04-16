@@ -1,14 +1,20 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 android {
 	buildTypes.onEach {
-		it.buildConfigField("String", "QiitaClientId", QiitaClientId)
-		it.buildConfigField("String", "QiitaClientSecret", QiitaClientSecret)
+		val properties = Properties()
+		properties.load(project.rootProject.file("local.properties").inputStream())
+		val id = properties.getProperty("QiitaClientId")
+		val secret = properties.getProperty("QiitaClientSecret")
+		it.buildConfigField("String", "QiitaClientId", "\"${id}\"")
+		it.buildConfigField("String", "QiitaClientSecret", "\"${secret}\"")
 	}
-//	libraryVariants.all {
-//		generateBuildConfigProvider.configure {
-//			enabled = true
-//		}
-//	}
 }
+
+kotlinCompile {
+	kotlinOptions.freeCompilerArgs += KOTLIN_USE_OPT
+}
+
 dependencies {
 	implementation(project(Modules.data))
 	implementation(project(Modules.`domains-auth`))

@@ -25,20 +25,20 @@ object Libs {
 	val `kotlinx-serialization-runtime` = kotlinx("serialization-runtime", "0.20.0")
 
 	const val appcompat = "androidx.appcompat:appcompat:1.2.0-beta01"
-	const val `core-ktx` = "androidx.core:core-ktx:1.3.0-beta01"
+	const val `core-ktx` = "androidx.core:core-ktx:1.3.0-rc01"
 	const val `legacy-support-v4` = "androidx.legacy:legacy-support-v4:1.0.0"
 	const val `fragment-ktx` = "androidx.fragment:fragment-ktx:1.3.0-alpha03"
 	const val `activity-ktx` = "androidx.activity:activity-ktx:1.2.0-alpha03"
 	const val browser = "androidx.browser:browser:1.3.0-alpha01"
-	const val `security-crypto` = "androidx.security:security-crypto:1.0.0-beta01"
+	const val `security-crypto` = "androidx.security:security-crypto:1.0.0-rc01"
 
 	const val `recyclerview-selection` = "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
 	const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha02"
 	const val material = "com.google.android.material:material:1.2.0-alpha06"
 	const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
 	const val transition = "androidx.transition:transition:1.3.1"
-	const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01"
-	const val `preference-ktx` = "androidx.preference:preference-ktx:1.1.0"
+	const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01"
+	const val `preference-ktx` = "androidx.preference:preference-ktx:1.1.1"
 	const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
 
 	const val `play-services-wallet` = "com.google.android.gms:play-services-wallet:18.0.0"
@@ -49,7 +49,7 @@ object Libs {
 	const val `koin-android` = "org.koin:koin-android:$koin"
 	const val `koin-androidx-viewmodel` = "org.koin:koin-androidx-viewmodel:$koin"
 
-	const val `klock-jvm` = "com.soywiz.korlibs.klock:klock-jvm:1.10.3"
+	const val `klock-jvm` = "com.soywiz.korlibs.klock:klock-jvm:1.10.5"
 
 	/**
 	 * @link https://developer.android.com/jetpack/androidx/releases/navigation

@@ -2,6 +2,7 @@ plugins {
 	`kotlin-kapt`
 	`navigation-safeargs-kotlin`
 }
+
 android {
 	resourcePrefix("item_")
 	buildFeatures {

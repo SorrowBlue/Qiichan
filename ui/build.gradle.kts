@@ -5,9 +5,9 @@ plugins {
 android {
 	buildFeatures {
 		dataBinding = true
-//		viewBinding = true
 	}
 }
+
 dependencies {
 	api(Libs.`klock-jvm`)
 	api(Libs.material)
