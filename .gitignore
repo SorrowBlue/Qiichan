@@ -15,7 +15,7 @@ build/
 !/.idea/codeStyles/codeStyleConfig.xml
 !/.idea/codeStyles/Project.xml
 
-!/.idea/dictionaries/*
+!/.idea/dictionaries/*.xml
 
 !/.idea/encodings.xml
 !/.idea/gradle.xml
