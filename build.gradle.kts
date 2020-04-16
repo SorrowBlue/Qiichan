@@ -63,11 +63,13 @@ subprojects {
 			defaultConfig {
 				consumerProguardFiles("consumer-rules.pro")
 			}
-//			libraryVariants.all {
-//				generateBuildConfigProvider.configure {
-//					enabled = false
-//				}
-//			}
+			val enabledBuildConfigModule = setOf("data" to "auth")
+			libraryVariants.all {
+				generateBuildConfigProvider.configure {
+					enabled =
+						enabledBuildConfigModule.any { project.projectDir.parentFile.name == it.first && project.name == it.second }
+				}
+			}
 		}
 	}
 }
