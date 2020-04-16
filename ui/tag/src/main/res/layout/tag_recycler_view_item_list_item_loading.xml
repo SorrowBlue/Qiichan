@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data />
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?attr/selectableItemBackground"
+		android:paddingHorizontal="16dp"
+		android:paddingVertical="8dp">
+
+		<ImageView
+			android:id="@+id/profile_image_url"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:background="?attr/colorControlHighlight"
+			android:contentDescription="@null"
+			android:foreground="?attr/selectableItemBackground"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:background="?attr/colorControlHighlight"
+			android:gravity="center_vertical"
+			android:minHeight="48dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/profile_image_url"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<TextView
+			android:id="@+id/user_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:background="?attr/colorControlHighlight"
+			android:minEms="6"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintStart_toStartOf="@+id/title"
+			app:layout_constraintTop_toBottomOf="@+id/title" />
+
+		<TextView
+			android:id="@+id/created_at"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:background="?attr/colorControlHighlight"
+			android:minEms="5"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintStart_toEndOf="@+id/user_name"
+			app:layout_constraintTop_toTopOf="@+id/user_name" />
+
+		<TextView
+			android:id="@+id/likes_count"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:background="?attr/colorControlHighlight"
+			android:minEms="5"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintStart_toEndOf="@+id/created_at"
+			app:layout_constraintTop_toTopOf="@+id/user_name" />
+
+		<ImageView
+			android:id="@+id/tag_icon"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/user_name"
+			app:layout_constraintStart_toStartOf="@+id/user_name"
+			app:layout_constraintTop_toBottomOf="@+id/user_name"
+			app:srcCompat="@drawable/ic_twotone_local_offer" />
+
+		<com.google.android.flexbox.FlexboxLayout
+			android:id="@+id/tags_frame"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:background="?attr/colorControlHighlight"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			app:flexWrap="wrap"
+			app:layout_constraintBottom_toBottomOf="@+id/tag_icon"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHeight_min="24dp"
+			app:layout_constraintStart_toEndOf="@+id/tag_icon"
+			app:layout_constraintTop_toTopOf="@+id/tag_icon">
+
+		</com.google.android.flexbox.FlexboxLayout>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

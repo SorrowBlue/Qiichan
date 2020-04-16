@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="auth_msg_already_login">既にログインしています。</string>
+	<string name="auth_desc_qiita_login_button">Qiitaのログインボタン</string>
+	<string name="auth_desc_qiita_team_login_button">QiitaTeamのログインボタン</string>
+	<string name="auth_label_up_image_capa">アップロード可能画像容量</string>
+	<string name="auth_desc_user_image">ユーザの画像</string>
+	<string name="auth_desc_link_to_github">GitHubへのリンク</string>
+	<string name="auth_desc_link_to_twitter">Twitterへのリンク</string>
+	<string name="auth_desc_link_to_facebook">Facebookへのリンク</string>
+	<string name="auth_desc_link_to_linkedin">LinkedInへのリンク</string>
+	<string name="auth_label_following_tags">フォロー中のタグ</string>
+	<string name="auth_label_posted_articles">記事</string>
+	<string name="auth_label_following">フォロー中</string>
+	<string name="auth_label_follower">フォロワー</string>
+	<string name="auth_label_back_to_home">ホームに戻る</string>
+	<string name="auth_label_retry">リトライ</string>
+	<string name="auth_msg_auth_success">認証しました</string>
+	<string name="auth_msg_auth_failed">認証に失敗しました</string>
+	<string name="auth_msg_authenticating">認証中</string>
+</resources>

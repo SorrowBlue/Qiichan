@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<import type="com.google.android.flexbox.FlexWrap" />
+
+		<variable
+			name="item"
+			type="com.sorrowblue.qiichan.domains.item.QiitaItem" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?attr/selectableItemBackground"
+		android:paddingHorizontal="16dp"
+		android:paddingVertical="8dp">
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/recycler"
+			flexWrap="@{FlexWrap.WRAP}"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHeight_min="24dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:itemCount="1"
+			tools:listitem="@layout/item_view_tag" />
+
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:minLines="2"
+			android:text="@{item.title}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/recycler"
+			tools:text="【注意喚起】第三者のQiitaのコピー記事で飯を食っているかもしれないサイトについて..." />
+
+		<TextView
+			android:id="@+id/likes_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="いいね"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textColor="?attr/colorPrimary"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/title" />
+
+		<TextView
+			android:id="@+id/likes_count"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{String.valueOf(item.likesCount)}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/likes_label"
+			tools:text="123" />
+
+		<TextView
+			android:id="@+id/update_at"
+			dateTimeTz="@{item.updatedAt}"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			tools:text="@tools:sample/date/mmddyy" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

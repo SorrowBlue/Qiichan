@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="comment"
+			type="com.sorrowblue.qiichan.domains.item.comment.QiitaComment" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingHorizontal="16dp"
+		android:paddingVertical="8dp">
+
+		<ImageView
+			android:id="@+id/user_icon"
+			coil_uri="@{comment.user.profileImageUrl}"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@tools:sample/avatars" />
+
+		<TextView
+			android:id="@+id/user_id"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:text="@{`@` + comment.user.userId}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+			app:layout_constraintBottom_toBottomOf="@+id/user_icon"
+			app:layout_constraintEnd_toStartOf="@+id/update_at"
+			app:layout_constraintStart_toEndOf="@+id/user_icon"
+			app:layout_constraintTop_toTopOf="@+id/user_icon"
+			tools:text=" @SorroqBlue" />
+
+		<TextView
+			android:id="@+id/update_at"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
+			app:layout_constraintBaseline_toBaselineOf="@+id/user_id"
+			app:layout_constraintEnd_toStartOf="@+id/item_imageview"
+			tools:text="@tools:sample/date/hhmmss" />
+
+		<TextView
+			android:id="@+id/body"
+			markdown="@{comment.body}"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/user_icon"
+			tools:text="これ一般の人が正義感から言ってるのかと思ったら、システムエンジニアなのが最高に面白い" />
+
+		<ImageView
+			android:id="@+id/delete"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:foreground="?attr/selectableItemBackground"
+			android:padding="8dp"
+			android:tint="?attr/colorError"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_twotone_close" />
+
+		<ImageView
+			android:id="@+id/item_imageview"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:foreground="?attr/selectableItemBackground"
+			android:padding="8dp"
+			app:layout_constraintEnd_toStartOf="@+id/delete"
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_twotone_edit" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

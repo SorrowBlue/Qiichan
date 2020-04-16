@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/auth_navigation"
+	app:startDestination="@id/authUserFragment"
+	tools:ignore="UnusedNavigation">
+
+	<fragment
+		android:id="@+id/authUserFragment"
+		android:name="com.sorrowblue.qiichan.ui.auth.AuthUserFragment"
+		android:label="ユーザ"
+		tools:layout="@layout/auth_fragment_main">
+		<action
+			android:id="@+id/action_to_tag_list_navigation"
+			app:destination="@id/tag_list_navigation" />
+		<action
+			android:id="@+id/action_to_user_item_list_navigation"
+			app:destination="@id/user_item_list_navigation" />
+		<action
+			android:id="@+id/action_to_user_followees_navigation"
+			app:destination="@id/user_followees_navigation" />
+	</fragment>
+	<include app:graph="@navigation/tag_list_navigation" />
+	<include app:graph="@navigation/user_item_list_navigation" />
+	<include app:graph="@navigation/user_follow_navigation" />
+</navigation>

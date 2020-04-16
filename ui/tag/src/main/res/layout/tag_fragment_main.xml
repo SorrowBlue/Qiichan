@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<import type="com.sorrowblue.qiichan.ui.tag.TagAction" />
+
+		<variable
+			name="viewModel"
+			type="com.sorrowblue.qiichan.ui.tag.TagViewModel" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="16dp">
+
+		<ImageView
+			android:id="@+id/icon"
+			coil_uri="@{viewModel.tag.iconUrl}"
+			android:layout_width="108dp"
+			android:layout_height="108dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@tools:sample/avatars" />
+
+		<TextView
+			android:id="@+id/id"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="@{viewModel.tag.id}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+			app:layout_constraintEnd_toEndOf="@+id/icon"
+			app:layout_constraintStart_toStartOf="@+id/icon"
+			app:layout_constraintTop_toBottomOf="@+id/icon"
+			tools:text="Android" />
+
+		<TextView
+			android:id="@+id/item_count"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@{String.valueOf(viewModel.tag.itemsCount)}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			app:layout_constraintEnd_toStartOf="@+id/followers_count"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/id"
+			tools:text="14016" />
+
+		<View
+			android:id="@+id/tag_divider"
+			android:layout_width="1dp"
+			android:layout_height="0dp"
+			android:background="?android:attr/listDivider"
+			app:layout_constraintBottom_toBottomOf="@+id/item_label"
+			app:layout_constraintEnd_toStartOf="@+id/followers_count"
+			app:layout_constraintStart_toEndOf="@+id/item_count"
+			app:layout_constraintTop_toTopOf="@+id/item_count" />
+
+		<TextView
+			android:id="@+id/followers_count"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@{String.valueOf(viewModel.tag.followersCount)}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toEndOf="@+id/item_count"
+			app:layout_constraintTop_toBottomOf="@+id/id"
+			tools:text="43146" />
+
+		<TextView
+			android:id="@+id/item_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="記事"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintEnd_toEndOf="@+id/item_count"
+			app:layout_constraintStart_toStartOf="@+id/item_count"
+			app:layout_constraintTop_toBottomOf="@+id/item_count" />
+
+		<TextView
+			android:id="@+id/followers_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="フォロワー"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintEnd_toEndOf="@+id/followers_count"
+			app:layout_constraintStart_toStartOf="@+id/followers_count"
+			app:layout_constraintTop_toBottomOf="@+id/item_count" />
+
+		<Button
+			android:id="@+id/follow"
+			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:enabled="@{viewModel.isFollowing != null}"
+			android:onClick="@{() -> viewModel.isFollowing == true ? viewModel.unfollow() : viewModel.isFollowing == false ? viewModel.unfollow() : null}"
+			android:text="フォロー"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/tag_divider" />
+
+		<TextView
+			android:id="@+id/items"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:drawableTop="@drawable/ic_twotone_list_alt"
+			android:foreground="?attr/selectableItemBackground"
+			android:gravity="center_horizontal"
+			android:onClick="@{() -> viewModel.postAction(TagAction.ITEMS)}"
+			android:padding="8dp"
+			android:text="記事"
+			app:layout_constraintEnd_toStartOf="@+id/tag_divider2"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/follow" />
+
+		<TextView
+			android:id="@+id/trend"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:layout_marginEnd="16dp"
+			android:drawableTop="@drawable/ic_twotone_timeline"
+			android:enabled="false"
+			android:foreground="?attr/selectableItemBackground"
+			android:gravity="center_horizontal"
+			android:onClick="@{() -> viewModel.postAction(TagAction.TREND)}"
+			android:padding="8dp"
+			android:text="トレンド（準備中）"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toEndOf="@+id/tag_divider2"
+			app:layout_constraintTop_toBottomOf="@+id/follow" />
+
+		<View
+			android:id="@+id/tag_divider2"
+			android:layout_width="1dp"
+			android:layout_height="0dp"
+			android:background="?android:attr/listDivider"
+			app:layout_constraintBottom_toBottomOf="@+id/items"
+			app:layout_constraintEnd_toStartOf="@+id/trend"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toEndOf="@+id/items"
+			app:layout_constraintTop_toTopOf="@+id/items" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

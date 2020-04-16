@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/tag_navigation"
+	app:startDestination="@id/tagFragment"
+	tools:ignore="UnusedNavigation">
+
+	<fragment
+		android:id="@+id/tagFragment"
+		android:name="com.sorrowblue.qiichan.ui.tag.TagFragment"
+		android:label="タグ"
+		tools:layout="@layout/tag_fragment_main">
+		<argument
+			android:name="tag"
+			android:defaultValue="@null"
+			app:argType="com.sorrowblue.qiichan.domains.tag.QiitaTag"
+			app:nullable="true" />
+		<argument
+			android:name="tagId"
+			android:defaultValue="@null"
+			app:argType="string"
+			app:nullable="true" />
+		<action
+			android:id="@+id/tag_action_tagfragment_to_tagitemlistfragment"
+			app:destination="@id/tagItemListFragment" />
+		<deepLink
+			android:id="@+id/tag_deeplink"
+			android:autoVerify="true"
+			app:uri="qiichan.sorrowblue.com/tags/{tagId}" />
+	</fragment>
+	<fragment
+		android:id="@+id/tagItemListFragment"
+		android:name="com.sorrowblue.qiichan.ui.tag.item.TagItemListFragment"
+		android:label="TagItemListFragment"
+		tools:layout="@layout/tag_fragment_item_list">
+		<argument
+			android:name="tag"
+			android:defaultValue="@null"
+			app:argType="com.sorrowblue.qiichan.domains.tag.QiitaTag"
+			app:nullable="true" />
+		<action
+			android:id="@+id/action_to_item_navigation"
+			app:destination="@id/item_navigation" />
+		<action
+			android:id="@+id/action_to_tagFragment"
+			app:destination="@id/tagFragment" />
+	</fragment>
+	<include app:graph="@navigation/item_navigation" />
+</navigation>

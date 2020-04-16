@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/tagfeed_navigation"
+	app:startDestination="@id/tagFeedFragment"
+	tools:ignore="UnusedNavigation">
+
+	<fragment
+		android:id="@+id/tagFeedFragment"
+		android:name="com.sorrowblue.qiichan.ui.tagfeed.TagFeedFragment"
+		android:label="@string/tagfeed_label"
+		tools:layout="@layout/tagfeed_fragment_main" >
+		<action
+			android:id="@+id/action_to_tag_navigation"
+			app:destination="@id/tag_navigation" />
+		<action
+			android:id="@+id/action_to_item_navigation"
+			app:destination="@id/item_navigation" />
+	</fragment>
+	<include app:graph="@navigation/tag_navigation" />
+	<include app:graph="@navigation/item_navigation" />
+</navigation>

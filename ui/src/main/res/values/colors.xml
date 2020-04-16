@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="color_primary">#FF55C500</color>
+	<color name="color_primary_alpha">#9055C500</color>
+	<color name="color_primary_variant">#FF029300</color>
+	<color name="color_primary_dark">#FF029300</color>
+	<color name="color_secondary">#FF4097DB</color>
+	<color name="color_secondary_variant">#FF0069a9</color>
+
+	<array name="circle_color_scheme">
+		<item>@color/color_primary</item>
+		<item>@color/color_secondary</item>
+		<item>@color/color_primary_variant</item>
+		<item>@color/color_secondary_variant</item>
+	</array>
+</resources>

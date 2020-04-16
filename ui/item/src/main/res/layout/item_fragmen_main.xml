@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="vieModel"
+			type="com.sorrowblue.qiichan.ui.item.ItemViewModel" />
+
+		<import type="com.sorrowblue.qiichan.ui.item.R" />
+
+		<import type="com.google.android.flexbox.FlexWrap" />
+	</data>
+
+	<androidx.core.widget.NestedScrollView
+		android:id="@+id/scroll_view"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:clipToPadding="false"
+		android:fillViewport="true">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="16dp">
+
+			<ImageView
+				android:id="@+id/user_icon"
+				coil_uri="@{vieModel.item.user.profileImageUrl}"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/update_at"
+				tools:srcCompat="@tools:sample/avatars" />
+
+			<TextView
+				android:id="@+id/user_name"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:text="@{vieModel.item == null ? `` : !vieModel.item.user.name.empty ? vieModel.item.user.name : `@` + vieModel.item.user.userId}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+				app:layout_constraintBottom_toBottomOf="@+id/user_icon"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/user_icon"
+				app:layout_constraintTop_toTopOf="@+id/user_icon"
+				tools:text="\@SorrowBlue" />
+
+			<TextView
+				android:id="@+id/update_at"
+				dateTimeTz="@{vieModel.item.updatedAt}"
+				placeholder="@{ R.string.item_label_update_at }"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="@tools:sample/date/hhmmss" />
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/tag_group"
+				flexWrap="@{FlexWrap.WRAP}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				app:adapter="@{vieModel.adapter}"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/user_icon"
+				tools:itemCount="1"
+				tools:listitem="@layout/item_view_tag" />
+
+
+			<TextView
+				android:id="@+id/web_view"
+				markdown="@{vieModel.item.body}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/tag_group"
+				app:layout_constraintVertical_bias="0.0"
+				tools:text="「書きやすくて読みやすいプレーンテキストとして記述した文書を、妥当なXHTML（もしくはHTML）文書へと変換できるフォーマット」として、ジョン・グルーバー（英語版）により作成された。アーロン・スワーツも大きな貢献をしている[4]。Markdownの記法の多くは、電子メールにおいてプレーンテキストを装飾する際の慣習から着想を得ている。  Markdownはグルーバーによって書かれたMarkdown.plというPerlプログラムを指すこともある。このスクリプトは、Markdownの形式でマークアップされたテキストをXHTML文書もしくはHTML文書に変換するものである。Markdown.plはスクリプト単体として利用することができると同時に、BlosxomやMovable Typeのプラグインなどからも利用できる[4]。  Markdown.plは、その後第三者によってCPANのPerlモジュール (Text::Markdown) として再実装され、さらにPython等の他のプログラミング言語でも実装された。MarkdownはBSDライセンスの下で配布され、いくつかのコンテンツ管理システム (CMS) でもプラグインとして利用できる[5][6]。" />
+
+			<androidx.core.widget.ContentLoadingProgressBar
+				style="?android:attr/progressBarStyleLarge"
+				isShown="@{vieModel.item == null}"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:indeterminate="true"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<androidx.constraintlayout.widget.Group
+				android:id="@+id/item_group"
+				isVisible="@{vieModel.item != null}"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:constraint_referenced_ids="update_at,tag_group,user_name,web_view,user_icon" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.core.widget.NestedScrollView>
+</layout>

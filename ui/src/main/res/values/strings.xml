@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name" translatable="false">Qiichan</string>
+	<string name="msg_no_browser_found">No browser found</string>
+</resources>

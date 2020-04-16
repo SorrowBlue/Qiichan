@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/auth" />
+            <option value="$PROJECT_DIR$/data/item" />
+            <option value="$PROJECT_DIR$/data/tag" />
+            <option value="$PROJECT_DIR$/data/user" />
+            <option value="$PROJECT_DIR$/domains" />
+            <option value="$PROJECT_DIR$/domains/auth" />
+            <option value="$PROJECT_DIR$/domains/item" />
+            <option value="$PROJECT_DIR$/domains/tag" />
+            <option value="$PROJECT_DIR$/domains/user" />
+            <option value="$PROJECT_DIR$/module" />
+            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/auth" />
+            <option value="$PROJECT_DIR$/ui/item" />
+            <option value="$PROJECT_DIR$/ui/settings" />
+            <option value="$PROJECT_DIR$/ui/tag" />
+            <option value="$PROJECT_DIR$/ui/tagfeed" />
+            <option value="$PROJECT_DIR$/ui/trend" />
+            <option value="$PROJECT_DIR$/ui/user" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

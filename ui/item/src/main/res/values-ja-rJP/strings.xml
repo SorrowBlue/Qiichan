@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="item_label_update_at">%1$sに更新</string>
+	<string name="item_label">投稿された記事</string>
+</resources>

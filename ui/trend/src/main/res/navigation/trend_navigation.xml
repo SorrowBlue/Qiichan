@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/trend_navigation"
+	app:startDestination="@id/trendFragment"
+	tools:ignore="UnusedNavigation">
+
+	<fragment
+		android:id="@+id/trendFragment"
+		android:name="com.sorrowblue.qiichan.ui.trend.TrendFragment"
+		android:label="@string/trend_label_trend"
+		tools:layout="@layout/trend_fragment_main" >
+		<action
+			android:id="@+id/action_to_user_navigation"
+			app:destination="@id/user_navigation" />
+		<action
+			android:id="@+id/action_to_item_navigation"
+			app:destination="@id/item_navigation" />
+	</fragment>
+	<include app:graph="@navigation/item_navigation" />
+	<include app:graph="@navigation/user_navigation" />
+</navigation>

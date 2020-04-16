@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<item name="bottom_app_bar" type="id" />
+	<item name="fab" type="id" />
+	<item name="toolbar" type="id" />
+	<item name="coordinator" type="id" />
+	<item name="nav_view" type="id" />
+	<item name="trendFragment" type="id" />
+	<item name="open_in_browser" type="id" />
+	<item name="extend_toolbar_frame" type="id" />
+</resources>

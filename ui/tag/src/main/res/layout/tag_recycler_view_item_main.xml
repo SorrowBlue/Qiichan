@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="tag"
+			type="com.sorrowblue.qiichan.domains.tag.QiitaTag" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?attr/selectableItemBackground"
+		android:paddingHorizontal="16dp"
+		android:paddingVertical="8dp">
+
+		<ImageView
+			android:id="@+id/icon_uri"
+			coil_uri="@{tag.iconUrl}"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@tools:sample/avatars" />
+
+		<TextView
+			android:id="@+id/name"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:text="@{tag.id}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+			app:layout_constraintBottom_toBottomOf="@+id/icon_uri"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/icon_uri"
+			app:layout_constraintTop_toTopOf="@+id/icon_uri"
+			tools:text="Android" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

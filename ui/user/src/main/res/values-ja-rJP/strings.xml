@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="user_label_followers">%1$sのフォロワー</string>
+	<string name="user_label_following">%1$sがフォロー中</string>
+	<string name="user_label">ユーザ情報</string>
+</resources>

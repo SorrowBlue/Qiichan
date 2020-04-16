@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="com.sorrowblue.qiichan.ui.auth.login.LoginViewModel" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="32dp">
+
+		<ImageView
+			android:id="@+id/auth_imageview"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:adjustViewBounds="true"
+			android:contentDescription="@null"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_undraw_mobile_login_ikmv" />
+
+		<ImageView
+			android:id="@+id/qiita"
+			android:layout_width="0dp"
+			android:layout_height="48dp"
+			android:adjustViewBounds="true"
+			android:background="#55C500"
+			android:contentDescription="@string/auth_desc_qiita_login_button"
+			android:foreground="?attr/selectableItemBackground"
+			android:onClick="@{() -> viewModel.onClickQiita()}"
+			app:layout_constraintBottom_toTopOf="@+id/qiita_team"
+			app:layout_constraintEnd_toEndOf="@+id/qiita_team"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="@+id/qiita_team"
+			app:layout_constraintTop_toBottomOf="@+id/auth_imageview"
+			app:layout_constraintVertical_chainStyle="packed"
+			app:srcCompat="@drawable/user_logo_qiita" />
+
+		<ImageView
+			android:id="@+id/qiita_team"
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:layout_marginTop="16dp"
+			android:adjustViewBounds="true"
+			android:contentDescription="@string/auth_desc_qiita_team_login_button"
+			android:foreground="?attr/selectableItemBackground"
+			android:onClick="@{() -> viewModel.onClickQiitaTeam()}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/qiita"
+			app:srcCompat="@drawable/user_logo_qiita_team" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

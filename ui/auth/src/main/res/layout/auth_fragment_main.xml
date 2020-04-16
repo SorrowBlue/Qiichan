@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<import type="com.sorrowblue.qiichan.ui.auth.UserAction" />
+
+		<variable
+			name="viewModel"
+			type="com.sorrowblue.qiichan.ui.auth.AuthUserViewModel" />
+	</data>
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="16dp">
+
+			<ImageView
+				android:id="@+id/profile_image_url"
+				coil_uri="@{viewModel.user.profileImageUrl}"
+				android:layout_width="128dp"
+				android:layout_height="128dp"
+				android:contentDescription="@string/auth_desc_user_image"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:srcCompat="@tools:sample/avatars" />
+
+			<TextView
+				android:id="@+id/name"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:text="@{!viewModel.user.name.empty ? viewModel.user.name : `@`+viewModel.user.userId}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/profile_image_url"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="@tools:sample/full_names[0]" />
+
+			<TextView
+				android:id="@+id/user_id"
+				isVisible="@{!viewModel.user.name.empty}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:text="@{`@` + viewModel.user.userId}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+				app:layout_constraintEnd_toEndOf="@+id/name"
+				app:layout_constraintStart_toStartOf="@+id/name"
+				app:layout_constraintTop_toBottomOf="@+id/name"
+				tools:text="@tools:sample/full_names[0]" />
+
+			<ImageView
+				android:id="@+id/github"
+				isVisible="@{!viewModel.user.gitHubId.empty}"
+				openInBrowser='@{"https://github.com/" + viewModel.user.gitHubId}'
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginEnd="8dp"
+				android:contentDescription="@string/auth_desc_link_to_github"
+				android:foreground="?attr/selectableItemBackground"
+				android:padding="8dp"
+				app:layout_constraintEnd_toStartOf="@+id/twitter"
+				app:layout_constraintHorizontal_bias="0.0"
+				app:layout_constraintHorizontal_chainStyle="packed"
+				app:layout_constraintStart_toEndOf="@+id/profile_image_url"
+				app:layout_constraintTop_toBottomOf="@+id/user_id"
+				app:srcCompat="@drawable/ic_github" />
+
+			<ImageView
+				android:id="@+id/twitter"
+				isVisible="@{!viewModel.user.twitterId.empty}"
+				openInBrowser='@{"https://twitter.com/" + viewModel.user.twitterId}'
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginEnd="8dp"
+				android:contentDescription="@string/auth_desc_link_to_twitter"
+				android:foreground="?attr/selectableItemBackground"
+				android:padding="8dp"
+				app:layout_constraintEnd_toStartOf="@+id/facebook"
+				app:layout_constraintStart_toEndOf="@+id/github"
+				app:layout_constraintTop_toBottomOf="@+id/user_id"
+				app:srcCompat="@drawable/ic_twitter" />
+
+			<ImageView
+				android:id="@+id/facebook"
+				isVisible="@{!viewModel.user.facebookId.empty}"
+				openInBrowser='@{"https://www.facebook.com/" + viewModel.user.facebookId}'
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginEnd="8dp"
+				android:contentDescription="@string/auth_desc_link_to_facebook"
+				android:foreground="?attr/selectableItemBackground"
+				android:padding="8dp"
+				app:layout_constraintEnd_toStartOf="@+id/linkedin"
+				app:layout_constraintStart_toEndOf="@+id/twitter"
+				app:layout_constraintTop_toBottomOf="@+id/user_id"
+				app:srcCompat="@drawable/ic_facebook" />
+
+			<ImageView
+				android:id="@+id/linkedin"
+				isVisible="@{!viewModel.user.linkedInId.empty}"
+				openInBrowser='@{"https://www.linkedin.com/in/" + viewModel.user.linkedInId}'
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:contentDescription="@string/auth_desc_link_to_linkedin"
+				android:foreground="?attr/selectableItemBackground"
+				android:padding="8dp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/facebook"
+				app:layout_constraintTop_toBottomOf="@+id/user_id"
+				app:srcCompat="@drawable/ic_linkedin" />
+
+			<View
+				android:id="@+id/user_divider"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="16dp"
+				android:background="?android:attr/listDivider"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/profile_image_url" />
+
+			<TextView
+				android:id="@+id/description"
+				isVisible="@{!viewModel.user.description.empty}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:text="@{viewModel.user.description}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/user_divider"
+				tools:text="Description is the pattern of narrative development that aims to make vivid a place, object, character, or group." />
+
+			<View
+				android:id="@+id/user_divider2"
+				isVisible="@{!viewModel.user.description.empty}"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="16dp"
+				android:background="?android:attr/listDivider"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.468"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/description" />
+
+			<TextView
+				android:id="@+id/websiteUrl"
+				isVisible="@{!viewModel.user.websiteUrl.toString().empty}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:autoLink="web"
+				android:drawableStart="@drawable/ic_twotone_link"
+				android:drawablePadding="8dp"
+				android:gravity="center_vertical"
+				android:text="@{viewModel.user.websiteUrl.toString()}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/user_divider2"
+				tools:text="http://example.com" />
+
+			<TextView
+				android:id="@+id/organization"
+				isVisible="@{!viewModel.user.organization.empty}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:drawableStart="@drawable/ic_twotone_domain"
+				android:drawablePadding="8dp"
+				android:gravity="center_vertical"
+				android:text="@{viewModel.user.organization}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/websiteUrl"
+				tools:text="Example Domain" />
+
+			<TextView
+				android:id="@+id/location"
+				isVisible="@{!viewModel.user.location.empty}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:drawableStart="@drawable/ic_twotone_place"
+				android:drawablePadding="8dp"
+				android:gravity="center_vertical"
+				android:text="@{viewModel.user.location}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/organization"
+				tools:text="Japan/Tokyo" />
+
+			<View
+				android:id="@+id/user_divider3"
+				isVisible="@{!viewModel.user.organization.empty || !viewModel.user.location.empty || !viewModel.user.websiteUrl.toString().empty}"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="16dp"
+				android:background="?android:attr/listDivider"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/location" />
+
+			<TextView
+				android:id="@+id/tag"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:drawableTop="@drawable/ic_twotone_loyalty"
+				android:drawablePadding="8dp"
+				android:foreground="?attr/selectableItemBackground"
+				android:gravity="center_vertical"
+				android:onClick="@{() -> viewModel.setAction(UserAction.TAG)}"
+				android:text="@string/auth_label_following_tags"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintEnd_toStartOf="@+id/item"
+				app:layout_constraintHorizontal_bias="0.5"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/user_divider3" />
+
+			<TextView
+				android:id="@+id/item"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:foreground="?attr/selectableItemBackground"
+				android:gravity="center_horizontal"
+				android:onClick="@{() -> viewModel.setAction(UserAction.ITEM)}"
+				android:text="@{String.valueOf(viewModel.user.itemsCount)}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+				app:layout_constraintBottom_toBottomOf="@+id/item_label"
+				app:layout_constraintEnd_toStartOf="@+id/followed"
+				app:layout_constraintHorizontal_bias="0.5"
+				app:layout_constraintStart_toEndOf="@+id/tag"
+				app:layout_constraintTop_toTopOf="@+id/tag"
+				tools:text="11" />
+
+			<TextView
+				android:id="@+id/followed"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:foreground="?attr/selectableItemBackground"
+				android:gravity="center_horizontal"
+				android:onClick="@{() -> viewModel.setAction(UserAction.FOLLOWING)}"
+				android:text="@{String.valueOf(viewModel.user.followeesCount)}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+				app:layout_constraintBottom_toBottomOf="@+id/followed_label"
+				app:layout_constraintEnd_toStartOf="@+id/follower"
+				app:layout_constraintHorizontal_bias="0.5"
+				app:layout_constraintStart_toEndOf="@+id/item"
+				app:layout_constraintTop_toTopOf="@+id/item"
+				tools:text="124" />
+
+			<TextView
+				android:id="@+id/follower"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:foreground="?attr/selectableItemBackground"
+				android:gravity="center_horizontal"
+				android:onClick="@{() -> viewModel.setAction(UserAction.FOLLOWED)}"
+				android:text="@{String.valueOf(viewModel.user.followersCount)}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+				app:layout_constraintBottom_toBottomOf="@+id/follower_label"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.5"
+				app:layout_constraintStart_toEndOf="@+id/followed"
+				app:layout_constraintTop_toTopOf="@+id/item"
+				app:layout_constraintVertical_bias="0.0"
+				tools:text="11457" />
+
+			<TextView
+				android:id="@+id/item_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/auth_label_posted_articles"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintBaseline_toBaselineOf="@+id/tag"
+				app:layout_constraintEnd_toEndOf="@+id/item"
+				app:layout_constraintStart_toStartOf="@+id/item" />
+
+			<TextView
+				android:id="@+id/followed_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/auth_label_following"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintBaseline_toBaselineOf="@+id/tag"
+				app:layout_constraintEnd_toEndOf="@+id/followed"
+				app:layout_constraintStart_toStartOf="@+id/followed" />
+
+			<TextView
+				android:id="@+id/follower_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/auth_label_follower"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintBaseline_toBaselineOf="@+id/tag"
+				app:layout_constraintEnd_toEndOf="@+id/follower"
+				app:layout_constraintStart_toStartOf="@+id/follower" />
+
+			<View
+				android:id="@+id/auth_divider4"
+				android:layout_width="0dp"
+				android:layout_height="1dp"
+				android:layout_marginTop="16dp"
+				android:background="?android:attr/listDivider"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/tag" />
+
+			<TextView
+				android:id="@+id/auth_up_image_capa_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:text="@string/auth_label_up_image_capa"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/auth_divider4" />
+
+			<TextView
+				android:id="@+id/auth_up_image_capa"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@{viewModel.user.imageMonthlyUploadRemainingMB+ `/` + viewModel.user.imageMonthlyUploadLimitMB + `MB`}"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+				app:layout_constraintBaseline_toBaselineOf="@+id/auth_up_image_capa_label"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:text="95.50/100.00MB" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.core.widget.NestedScrollView>
+</layout>

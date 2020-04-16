@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/tag_list_navigation"
+	app:startDestination="@id/tagListFragment"
+	tools:ignore="UnusedNavigation">
+
+	<fragment
+		android:id="@+id/tagListFragment"
+		android:name="com.sorrowblue.qiichan.ui.tag.list.TagListFragment"
+		android:label="タグリスト"
+		tools:layout="@layout/tag_fragment_list" >
+		<argument
+			android:name="user"
+			app:argType="com.sorrowblue.qiichan.domains.user.QiitaUser" />
+		<action
+			android:id="@+id/tag_action_taglistfragment_to_tag_navigation"
+			app:destination="@id/tag_navigation" />
+	</fragment>
+	<include app:graph="@navigation/tag_navigation" />
+</navigation>

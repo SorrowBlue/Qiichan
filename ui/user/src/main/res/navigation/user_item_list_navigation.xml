@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/user_item_list_navigation"
+	app:startDestination="@id/userItemListFragment"
+	tools:ignore="UnusedNavigation">
+
+	<fragment
+		android:id="@+id/userItemListFragment"
+		android:name="com.sorrowblue.qiichan.ui.user.item.UserItemListFragment"
+		android:label="ユーザの投稿リスト">
+		<argument
+			android:name="user"
+			app:argType="com.sorrowblue.qiichan.domains.user.QiitaUser" />
+		<action
+			android:id="@+id/action_to_item_navigation"
+			app:destination="@id/item_navigation" />
+	</fragment>
+	<include app:graph="@navigation/item_navigation" />
+</navigation>

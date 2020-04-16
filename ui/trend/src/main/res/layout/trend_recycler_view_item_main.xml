@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="item"
+			type="com.sorrowblue.qiichan.domains.item.TrendItem" />
+
+		<import type="android.net.Uri" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?attr/selectableItemBackground"
+		android:paddingHorizontal="16dp"
+		android:paddingVertical="8dp">
+
+		<ImageView
+			android:id="@+id/profile_image_url"
+			coil_uri="@{item.author.profileImageUrl}"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:contentDescription="@null"
+			android:foreground="?attr/selectableItemBackground"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@tools:sample/avatars" />
+
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:text="@{item.title}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/profile_image_url"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="JavaScript:通常の関数とアロー関数の違いは「書き方だけ」ではない。異なる性質が10個ほどある。" />
+
+		<TextView
+			android:id="@+id/user_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="@{`by ` + item.author.id}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="@+id/title"
+			app:layout_constraintTop_toBottomOf="@+id/trend_barrier"
+			app:layout_constraintVertical_bias="1.0"
+			tools:text="by SorrowBlue" />
+
+		<ImageView
+			android:id="@+id/is_new"
+			isVisible="@{item.newArrival}"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginEnd="8dp"
+			android:contentDescription="@null"
+			app:layout_constraintBottom_toBottomOf="@+id/user_name"
+			app:layout_constraintEnd_toStartOf="@+id/user_name"
+			app:layout_constraintTop_toTopOf="@+id/user_name"
+			app:srcCompat="@drawable/item_ic_twotone_fiber_new"
+			app:tint="?attr/colorPrimary" />
+
+		<TextView
+			android:id="@+id/created_at"
+			dateTimeAgo="@{item.createdAt}"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/user_name"
+			tools:text="1 day ago" />
+
+		<TextView
+			android:id="@+id/likes_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:text="@string/trend_label_likes"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textColor="?attr/colorPrimary"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/created_at" />
+
+		<TextView
+			android:id="@+id/likes_count"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{String.valueOf(item.likesCount)}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/likes_label"
+			tools:text="100" />
+
+		<androidx.constraintlayout.widget.Barrier
+			android:id="@+id/trend_barrier"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:barrierDirection="bottom"
+			app:constraint_referenced_ids="profile_image_url,title" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

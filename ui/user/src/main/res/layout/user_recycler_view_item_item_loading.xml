@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data />
+
+	<com.facebook.shimmer.ShimmerFrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:shimmer_auto_start="true">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="16dp"
+			android:paddingVertical="8dp">
+
+			<ImageView
+				android:id="@+id/icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:srcCompat="@drawable/ic_twotone_local_offer" />
+
+			<View
+				android:id="@+id/recycler"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:background="?attr/colorControlHighlight"
+				app:layout_constraintBottom_toBottomOf="@+id/icon"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHeight_min="24dp"
+				app:layout_constraintStart_toEndOf="@+id/icon"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:itemCount="1" />
+
+			<TextView
+				android:id="@+id/title"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:background="?attr/colorControlHighlight"
+				android:minLines="2"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/recycler" />
+
+			<TextView
+				android:id="@+id/likes_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:text="いいね"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				android:textColor="?attr/colorPrimary"
+				android:textStyle="bold"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/title" />
+
+			<TextView
+				android:id="@+id/likes_count"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:background="?attr/colorControlHighlight"
+				android:minEms="2"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/likes_label" />
+
+			<TextView
+				android:id="@+id/update_at"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:background="?attr/colorControlHighlight"
+				android:minEms="4"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent" />
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</com.facebook.shimmer.ShimmerFrameLayout>
+</layout>

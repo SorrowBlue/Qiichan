@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/auth_login_navigation"
+	app:startDestination="@id/loginFragment"
+	tools:ignore="UnusedNavigation">
+
+	<fragment
+		android:id="@+id/loginFragment"
+		android:name="com.sorrowblue.qiichan.ui.auth.login.LoginFragment"
+		android:label="LoginFragment"
+		tools:layout="@layout/auth_fragment_login">
+		<deepLink
+			android:id="@+id/user_deeplink"
+			android:autoVerify="true"
+			app:uri="qiichan.sorrowblue.com/login" />
+	</fragment>
+</navigation>

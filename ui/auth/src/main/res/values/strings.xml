@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="auth_msg_already_login">You are already logged in.</string>
+	<string name="auth_desc_qiita_login_button">Qiita login button</string>
+	<string name="auth_desc_qiita_team_login_button">QiitaTeam login button</string>
+	<string name="auth_label_up_image_capa">Uploadable image capacity</string>
+	<string name="auth_desc_user_image">User image</string>
+	<string name="auth_desc_link_to_github">Link to GitHub</string>
+	<string name="auth_desc_link_to_twitter">Link to Twitter</string>
+	<string name="auth_desc_link_to_facebook">Link to Facebook</string>
+	<string name="auth_desc_link_to_linkedin">Link to LinkedIn</string>
+	<string name="auth_label_following_tags">Following Tags</string>
+	<string name="auth_label_posted_articles">Posted Articles</string>
+	<string name="auth_label_following">Following</string>
+	<string name="auth_label_follower">Follower</string>
+	<string name="auth_label_back_to_home">Back to home</string>
+	<string name="auth_label_retry">Retry</string>
+	<string name="auth_msg_auth_success">Authentication succeeded</string>
+	<string name="auth_msg_auth_failed">certification failed</string>
+	<string name="auth_msg_authenticating">Authenticating</string>
+</resources>

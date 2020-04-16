@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="item"
+			type="com.sorrowblue.qiichan.domains.item.QiitaItem" />
+
+		<import type="android.net.Uri" />
+
+		<import type="com.google.android.flexbox.FlexWrap" />
+
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?attr/selectableItemBackground"
+		android:paddingHorizontal="16dp"
+		android:paddingVertical="8dp">
+
+		<ImageView
+			android:id="@+id/profile_image_url"
+			coil_uri="@{item.user.profileImageUrl}"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:contentDescription="@null"
+			android:foreground="?attr/selectableItemBackground"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@tools:sample/avatars" />
+
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:gravity="center_vertical"
+			android:minHeight="48dp"
+			android:text="@{item.title}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/profile_image_url"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="JavaScript:通常の関数とアロー関数の違いは「書き方だけ」ではない。異なる性質が10個ほどある。" />
+
+		<TextView
+			android:id="@+id/user_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="@{`by ` + item.user.userId}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintStart_toStartOf="@+id/title"
+			app:layout_constraintTop_toBottomOf="@+id/title"
+			tools:text="by SorrowBlue" />
+
+		<TextView
+			android:id="@+id/created_at"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintStart_toEndOf="@+id/user_name"
+			app:layout_constraintTop_toTopOf="@+id/user_name"
+			tools:text="1 day ago" />
+
+		<TextView
+			android:id="@+id/likes_count"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:text="@{`いいね` + item.likesCount}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			app:layout_constraintStart_toEndOf="@+id/created_at"
+			app:layout_constraintTop_toTopOf="@+id/user_name"
+			tools:text="いいね100" />
+
+		<ImageView
+			android:id="@+id/tag_icon"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/user_name"
+			app:layout_constraintVertical_bias="0.0"
+			app:srcCompat="@drawable/ic_twotone_local_offer" />
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/tags_frame"
+			flexWrap="@{FlexWrap.WRAP}"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="8dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintStart_toEndOf="@+id/tag_icon"
+			app:layout_constraintTop_toBottomOf="@+id/user_name"
+			app:layout_constraintVertical_bias="0.502"
+			tools:itemCount="1"
+			tools:listitem="@layout/item_view_tag" />
+
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
