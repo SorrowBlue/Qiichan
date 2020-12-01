@@ -4,7 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.toLiveData
 import com.sorrowblue.qiichan.domains.user.QiitaUser
+import org.koin.core.KoinComponent
+import org.koin.core.get
+import org.koin.core.parameter.parametersOf
 
-internal class UserItemListViewModel(user: QiitaUser, val adapter: UserItemListAdapter) : ViewModel() {
-	val pagedList = UserItemListDataSource.Factory(viewModelScope.coroutineContext, user).toLiveData(10)
+internal class UserItemListViewModel(user: QiitaUser, val adapter: UserItemListAdapter) :
+	ViewModel(), KoinComponent {
+	val pagedList =
+		get<UserItemListDataSource.Factory> { parametersOf(viewModelScope, user) }.toLiveData(6)
 }

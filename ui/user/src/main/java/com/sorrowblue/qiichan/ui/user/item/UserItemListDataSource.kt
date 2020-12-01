@@ -1,50 +1,33 @@
 package com.sorrowblue.qiichan.ui.user.item
 
-import androidx.lifecycle.MutableLiveData
-import androidx.paging.DataSource
-import androidx.paging.PositionalDataSource
 import com.sorrowblue.qiichan.domains.item.QiitaItem
 import com.sorrowblue.qiichan.domains.item.QiitaItemRepository
 import com.sorrowblue.qiichan.domains.user.QiitaUser
+import com.sorrowblue.qiichan.ui.component.CoroutinesPositionalDataSource
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import kotlin.coroutines.CoroutineContext
 
 internal class UserItemListDataSource(
-	override val coroutineContext: CoroutineContext,
-	private val user: QiitaUser
-) :
-	PositionalDataSource<QiitaItem>(), KoinComponent, CoroutineScope {
+	scope: CoroutineScope,
+	user: QiitaUser,
+	private val repo: QiitaItemRepository
+) : CoroutinesPositionalDataSource<QiitaItem>(scope) {
 
-	class Factory(private val coroutineContext: CoroutineContext, private val user: QiitaUser) :
-		DataSource.Factory<Int, QiitaItem>() {
-		override fun create() = UserItemListDataSource(coroutineContext, user)
-
+	class Factory(
+		scope: CoroutineScope,
+		private val user: QiitaUser,
+		private val repo: QiitaItemRepository
+	) : CoroutinesPositionalDataSource.Factory<QiitaItem, UserItemListDataSource>(scope) {
+		override fun createDataSource() = UserItemListDataSource(scope, user, repo)
 	}
 
-	val isLoading: MutableLiveData<Boolean> = MutableLiveData()
+	private val userId = user.userId
 
-	private val repo: QiitaItemRepository by inject()
+	override val totalCount = user.itemsCount
 
-	override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<QiitaItem>) {
-		isLoading.postValue(true)
-		launch {
-			runCatching {
-				repo.userItems(user.userId, params.startPosition / params.loadSize, params.loadSize)
-			}.onSuccess(callback::onResult)
-			isLoading.postValue(false)
-		}
-	}
+	override suspend fun loadRange(startPosition: Int, loadSize: Int) =
+		repo.userItems(userId, startPosition / loadSize, loadSize)
 
-	override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<QiitaItem>) {
-		isLoading.postValue(true)
-		launch {
-			runCatching {
-				repo.userItems(user.userId, 1, params.requestedLoadSize)
-			}.onSuccess { callback.onResult(it, 0, user.itemsCount) }
-			isLoading.postValue(false)
-		}
-	}
+	override suspend fun loadInitial(startPosition: Int, loadSize: Int, pageSize: Int) =
+		repo.userItems(userId, 1, loadSize)
+
 }

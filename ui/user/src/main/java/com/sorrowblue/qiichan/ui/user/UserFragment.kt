@@ -36,7 +36,6 @@ internal class UserFragment :
 			?: args.author?.id?.let(viewModel::setUserId)
 			?: args.userId?.let(::UserId)?.let(viewModel::setUserId)
 			?: return kotlin.run { findNavController().popBackStack() }
-		viewModel.uri.observe(this, this::openBrowser)
 		binding.root.applyVerticalInsets()
 		viewModel.user.observeNotNull(this) {
 			Log.d(javaClass.simpleName, it.name ?: "@${it.userId.value}")
@@ -83,9 +82,5 @@ internal class UserFragment :
 
 	override fun onBindMenu(menu: Menu) {
 		menu.setupOpenInBrowser(requireContext(), "https://qiita.com".toUri())
-	}
-
-	fun openBrowser(url: Uri) {
-		CustomTabsIntent.Builder().build().launchUrl(requireContext(), url)
 	}
 }

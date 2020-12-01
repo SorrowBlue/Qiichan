@@ -1,6 +1,5 @@
 package com.sorrowblue.qiichan.ui.user
 
-import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +18,6 @@ internal class UserViewModel(
 ) : ViewModel() {
 
 	private val _user = MutableLiveData<QiitaUser?>()
-	val uri = SingleLiveEvent<Uri>()
 	val user: LiveData<QiitaUser?> = _user
 	val action = SingleLiveEvent<UserAction>()
 
@@ -27,16 +25,12 @@ internal class UserViewModel(
 
 	fun follow() {
 		viewModelScope.launch {
-			when (isFollowing.value) {
-				true -> {
-					repo.unfollow(user.value!!.userId)
-					isFollowing.postValue(false)
-				}
-				false -> {
-					repo.follow(user.value!!.userId)
-					isFollowing.postValue(true)
-				}
-				else -> false
+			if (isFollowing.value == true) {
+				repo.unfollow(user.value!!.userId)
+				isFollowing.postValue(false)
+			} else {
+				repo.follow(user.value!!.userId)
+				isFollowing.postValue(true)
 			}
 		}
 	}

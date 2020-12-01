@@ -86,13 +86,15 @@ fun View.applyVerticalInsets() = doOnApplyWindowInsets { view, windowInsets, ini
 	)
 }
 
-fun View.applyTopInsetMargin() =
-	doOnApplyWindowInsets { view, windowInsets, initialPadding, margin ->
-		val actionBarSize =
-			context.theme.resolveDimensionPixelSize(AppcompatR.attr.actionBarSize, true)
+fun View.applyTopInsetMargin(isActionbar: Boolean = false) =
+	doOnApplyWindowInsets { view, windowInsets, _, margin ->
 		view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
 			updateMargins(
-				top = margin.top + windowInsets.systemWindowInsetTop,
+				top = margin.top + windowInsets.systemWindowInsetTop + if (isActionbar)
+					context.theme.resolveDimensionPixelSize(
+						AppcompatR.attr.actionBarSize,
+						true
+					) else 0,
 				left = margin.left + windowInsets.systemWindowInsetLeft,
 				right = margin.right + windowInsets.systemWindowInsetRight
 			)

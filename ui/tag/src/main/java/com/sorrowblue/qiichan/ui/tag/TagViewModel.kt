@@ -25,16 +25,18 @@ internal class TagViewModel(
 	val action = SingleLiveEvent<TagAction>()
 
 	init {
-		if (tag != null) {
-			this.tag.value = tag
-		} else if (tagId != null) {
-			viewModelScope.launch {
-				kotlin.runCatching {
-					repo.tag(tagId)
-				}.onSuccess { this@TagViewModel.tag.postValue(it) }
+		when {
+			tag != null -> this.tag.value = tag
+			tagId != null -> {
+				viewModelScope.launch {
+					kotlin.runCatching {
+						repo.tag(tagId)
+					}.onSuccess { this@TagViewModel.tag.postValue(it) }
+				}
 			}
-		} else {
-			this.tag.value = null
+			else -> {
+				this.tag.value = null
+			}
 		}
 	}
 
